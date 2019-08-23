@@ -1,4 +1,4 @@
-package Sebastian.demo.admin;
+package Sebastian.demo.adminController;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -50,7 +50,6 @@ public class AdminPageController {
 	@Secured(value = "ROLE_ADMIN")
 	private String deleteUser(@PathVariable("id") int id) {
 		logger.info("***** Wywolano - > AdminPageController.deleteUser > PARAMS: "+id);
-		System.out.println(id);
 		adminService.deleteUserById(id);
 		return "redirect:/admin/adminUsers/1";
 	}

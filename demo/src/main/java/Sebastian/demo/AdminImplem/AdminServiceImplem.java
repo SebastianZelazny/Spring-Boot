@@ -26,6 +26,7 @@ import Sebastian.demo.user.User;
 @Transactional
 public class AdminServiceImplem implements AdminService {
 
+	private static final Logger logger = LoggerFactory.getLogger(AdminServiceImplem.class);
 	
 	@Autowired
 	private JpaContext jpaContext;
@@ -94,7 +95,10 @@ public class AdminServiceImplem implements AdminService {
 
 	@Override
 	public void deleteUserById(int id) {
+		logger.info("***** WYWOLANO =>>>>> AdminServiceImplem.deleteUserById, PARAM: "+id);
 		adminRepository.deleteUserFromUserRole(id);
+		logger.info("***** WYWOLANO =>>>>> adminRepository.deleteUserFromUserRole, PARAM: "+id);
 		adminRepository.deleteUserFromUser(id);
+		logger.info("***** WYWOLANO =>>>>> adminRepository.deleteUserFromUser, PARAM: "+id);
 	}
 }
