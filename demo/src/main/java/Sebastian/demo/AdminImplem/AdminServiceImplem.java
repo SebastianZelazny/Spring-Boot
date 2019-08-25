@@ -22,7 +22,7 @@ import Sebastian.demo.UserIntefaces.RoleRepository;
 import Sebastian.demo.user.Role;
 import Sebastian.demo.user.User;
 
-@Service("adminService")
+@Service("adminServicess")
 @Transactional
 public class AdminServiceImplem implements AdminService {
 

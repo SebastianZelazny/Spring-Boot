@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import Sebastian.demo.AdminInterfaces.AdminService;
 import Sebastian.demo.FilesUpload.FileName;
-import Sebastian.demo.mainController.MainPageController;
 import Sebastian.demo.user.User;
 import Sebastian.demo.utilities.UserUtilities;
 
@@ -39,7 +38,7 @@ public class AdminPageController {
 	private static int ELEMENTS = 10;
 	private static final Logger logger = LoggerFactory.getLogger(AdminPageController.class);
 
-	@Autowired
+	@Autowired()
 	private AdminService adminService;
 	
 	@Autowired
@@ -47,11 +46,13 @@ public class AdminPageController {
 
 	@DELETE
 	@RequestMapping(value = "/admin/adminUsers/delete/{id}")
-	@Secured(value = "ROLE_ADMIN")
-	private String deleteUser(@PathVariable("id") int id) {
-		logger.info("***** Wywolano - > AdminPageController.deleteUser > PARAMS: "+id);
+	@Secured(value = { "ROLE_ADMIN" })
+	public String deleteUsers(@PathVariable int id) {
+		String returnPage = "redirect:/admin/adminUsers/1";
+		//adminService.displayLogs(id);
+		logger.info("**** WYWOLANO =>>>> AdminPageController.deleteUsers: "+ id);
 		adminService.deleteUserById(id);
-		return "redirect:/admin/adminUsers/1";
+		return returnPage;
 	}
 	
 	@GET

@@ -45,6 +45,11 @@ public class User {
 	@Column(name = "active")
 	@NotNull
 	private int active;
+	
+	@Column(name = "activation_code")
+	private String activationCode;
+
+
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -165,4 +170,11 @@ public class User {
 		this.confirmPassword = confirmPassword;
 	}
 	
+	public String getActivationCode() {
+		return activationCode;
+	}
+
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
+	}
 }
