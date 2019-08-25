@@ -34,7 +34,7 @@ public class UserServiceImplem implements UserService {
 	@Override
 	public void saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		user.setActive(1);
+		user.setActive(0);
 		Role role = roleRepository.findByRole("ROLE_USER");
 		user.setRoles(new HashSet<Role>(Arrays.asList(role)));
 		userRepository.save(user);
@@ -54,7 +54,11 @@ public class UserServiceImplem implements UserService {
 	@Override
 	public void updateUserProfile(String newName, String newLastName, String newEmail, String user_id) {
 		userRepository.updateUserProfile(newName, newLastName, newEmail, user_id);
-		
+	}
+
+	@Override
+	public void updateuserActivation(int activeCode, String activationCode) {
+		userRepository.updateActivation(activeCode, activationCode);
 	}
 
 }
